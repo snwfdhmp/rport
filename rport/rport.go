@@ -17,12 +17,15 @@ type reporter struct {
 }
 
 func NewReporter(remoteURL string) *reporter {
+	if len(remoteURL) > 0 && remoteURL[len(remoteURL)-1] == '/' {
+		remoteURL = remoteURL[:len(remoteURL)-1]
+	}
 	return &reporter{
 		remoteURL: remoteURL,
 	}
 }
 
-func (r *reporter) Report(err error, name string, data ...interface{}) (errNotNil bool) {
+func (r *reporter) Report(err error, reportName string, data ...interface{}) (errNotNil bool) {
 	errNotNil = err != nil //define return value
 	if !errNotNil {        // return early if no err
 		return
@@ -43,7 +46,7 @@ func (r *reporter) Report(err error, name string, data ...interface{}) (errNotNi
 	}
 
 	bodyReader := bytes.NewReader(body)
-	_, err = http.Post(r.remoteURL, "application/json", bodyReader)
+	_, err = http.Post(r.remoteURL+"/"+reportName, "application/json", bodyReader)
 	if errlog.Debug(err) {
 		return
 	}

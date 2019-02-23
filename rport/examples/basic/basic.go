@@ -8,7 +8,10 @@ import (
 )
 
 var (
-	r = rport.NewReporter("http://localhost:9900/")
+	httpmirrorRemote  = "http://localhost:9900/"
+	rportServerRemote = "http://localhost:9123/"
+
+	r = rport.NewReporter(rportServerRemote)
 )
 
 func main() {
