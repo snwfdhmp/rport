@@ -17,7 +17,7 @@ package cmd
 import (
 	"fmt"
 
-	rportserver "github.com/snwfdhmp/rport-server"
+	rportserver "github.com/snwfdhmp/rport/server"
 	"github.com/spf13/cobra"
 )
 

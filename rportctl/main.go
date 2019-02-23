@@ -14,7 +14,7 @@
 
 package main
 
-import "github.com/snwfdhmp/rport-cli/cmd"
+import "github.com/snwfdhmp/rport/cli/cmd"
 
 func main() {
 	cmd.Execute()
